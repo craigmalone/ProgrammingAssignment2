@@ -2,15 +2,14 @@
 ##
 ## Creates a pair of functions for efficient caching of a matrix inverse, via solve.
 ##
-## Utiizes the scoping assignment "<<-" which allows a child function to
-## search for a variable within the parent environment.
+## Utilizes the scoping assignment "<<-" which searches for the variable within the parent environment.
 ##
 ## This allows makeCacheMatrix (the parent function) to store the original matrix
-## and the cached solve while the closure over the child functions will allow them all to access
-## and set these variables.
+## and the cached solve.  The closure over the child functions will allow them all to access
+## and set (via <<-) these variables.
 ##
-## cacheSolve is a convenience function which utilizes this cached data to compute tghe inverse
-# of a matrix provided to it.
+## cacheSolve is a convenience function which utilizes this cached data to compute the inverse
+# of a matrix representation provided to it.
 
 ## makeCacheMatrix:
 ##
@@ -18,10 +17,10 @@
 ##   returns:   list representation of matrix with set,get,setSolve,getSolve child functions.
 ##
 ## Creates a representation of a matrix that allows for efficient repeated computation of the inverse.
-## Ths representation is a list with list elements that allow the setting/getting of the matrix data
+## This representation is a list with elements that allow the setting/getting of the matrix data
 ## and setting/getting of the cached solved matrix (inverse)
 ##
-## Used in conjunction with cacheSolve below.
+## Used in conjunction with the cacheSolve function below.
 
 makeCacheMatrix <- function(x = matrix()) {
     cachedSolve <- NULL
@@ -39,7 +38,7 @@ makeCacheMatrix <- function(x = matrix()) {
     ## setSolved: Child function to set the cached solved matrix
     setSolve <- function(solved) cachedSolve <<- solved
 
-     ## getSolved: Child function to get the cached solved matrix
+    ## getSolved: Child function to get the cached solved matrix
     getSolve <- function() cachedSolve
   
     ## Return the cacheMatrix list of child functions, all with environments
@@ -60,7 +59,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## using a cached version if this was ever previously called with the same matrix representation.
 ##
 ## The matrix representation is assumed to be a list created by the makeCacheMatrix function.
-## It will utilise the child functions in this list to access the original matrix data and
+## It will utilize the child functions in this list to access the original matrix data and
 ## store and retrieve the cached inverse.
 
 cacheSolve <- function(x, ...) {
