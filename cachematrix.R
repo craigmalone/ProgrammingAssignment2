@@ -72,7 +72,7 @@ cacheSolve <- function(x, ...) {
         return(solveMatrix)
     }
   
-    # Invserse not previously cached, compute then cache.
+    # Inverse not previously cached, compute then cache.
     originalMatrix <- x$get()
     solveMatrix <- solve(originalMatrix)
     x$setSolve(solveMatrix)
