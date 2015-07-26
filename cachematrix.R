@@ -9,7 +9,7 @@
 ## and set (via <<-) these variables.
 ##
 ## cacheSolve is a convenience function which utilizes this cached data to compute the inverse
-# of a matrix representation provided to it.
+## of a matrix representation provided to it.
 
 ## makeCacheMatrix:
 ##
